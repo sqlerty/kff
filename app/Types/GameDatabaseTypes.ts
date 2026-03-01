@@ -23,3 +23,8 @@ export interface Game {
   genres?: Genre | null;    
   platforms?: Platform | null;
 }
+
+export interface Genre{
+  id:number;
+  name:string;
+}

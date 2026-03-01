@@ -1,5 +1,5 @@
-import Cards from './Cards/Cards'
-import Filter from './Filter/Filter'
+import Cards from './Cards/Cards';
+import Filter from './Filter/Filter';
 
 export default function MainContent() {
     return (
@@ -7,5 +7,5 @@ export default function MainContent() {
             <Filter />
             <Cards />
         </div>
-    )
+    );
 }
