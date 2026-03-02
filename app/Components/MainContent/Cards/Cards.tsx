@@ -7,16 +7,14 @@ import {
     fetchGames,
     useFilteredGames,
     useLoading,
-    useGames,
 } from '../../Stores/GameStore';
 
 export default function Cards() {
     const loading = useLoading();
     const filteredGames = useFilteredGames();
-    const games = useGames;
     useEffect(() => {
         fetchGames();
-    }, [games]);
+    }, []);
 
     if (loading) return <LoadingCards />;
     return (
