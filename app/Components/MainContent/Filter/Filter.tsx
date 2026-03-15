@@ -1,7 +1,7 @@
 'use client';
-import { setFilter, useFilterGame } from '../../Stores/GameStore';
+import { setCategory, useCategoryGame } from '../../Stores/GameStore';
 export default function Filter() {
-    const filterGame = useFilterGame();
+    const filterGame = useCategoryGame();
     const categories = [
         'Все игры',
         'РПГ',
@@ -26,7 +26,7 @@ export default function Filter() {
                     <button
                         key={item}
                         className={`h-12 w-30 cursor-pointer rounded-lg font-semibold shadow-lg transition-all ${filterGame == item ? 'bg-purple-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
-                        onClick={() => setFilter(item)}
+                        onClick={() => setCategory(item)}
                     >
                         {item}
                     </button>

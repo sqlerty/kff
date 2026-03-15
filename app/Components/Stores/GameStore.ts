@@ -5,12 +5,12 @@ import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
 
 interface IGameStore{
-    filterGame: string;
+    categoryGame: string;
     games:Game[];
     loading:boolean;
-    filteredGames:Game[];
+    categoryGames:Game[];
     fetchGames: () => Promise<void>;
-    setFilter:(filter:string) => void;
+    setCategory:(filter:string) => void;
     searchedGames:Game[];
     searchTitle:string;
     setSearch:(searchTitle:string) => void;
@@ -19,15 +19,15 @@ interface IGameStore{
 const GameStore: StateCreator<IGameStore,[["zustand/devtools",never],["zustand/persist",unknown]]> = ((set,get) => ({
     games:[],
     loading:true,
-    filterGame:'Все игры',
-    filteredGames:[],
+    categoryGame:'Все игры',
+    categoryGames:[],
     searchedGames:[],
     searchTitle:'',
     fetchGames :async () => {
         try{
             const response = await axios.get<Game[]>('api/games');
             set({games:response.data});
-            get().setFilter(get().filterGame);
+            get().setCategory(get().categoryGame);
         }catch(err){
             console.error(err);
             return;
@@ -36,13 +36,13 @@ const GameStore: StateCreator<IGameStore,[["zustand/devtools",never],["zustand/p
         }
     },
 
-    setFilter : (category:string) => {
+    setCategory : (category:string) => {
         const { games } = get();
         let result = games;
         if (category !==" "  && category !== 'Все игры') {
             result = games.filter((game) => game.genres?.name == category);
         }
-        set({filterGame: category, filteredGames: result });
+        set({categoryGame: category, categoryGames: result });
     },
     setSearch: (title : string) => {
         set({searchTitle:title});
@@ -73,9 +73,9 @@ export const useGames = () => useGameStore((state)=> state.games);
 export const useLoading = () => useGameStore((state) => state.loading);
 export const fetchGames = () => useGameStore.getState().fetchGames();
 
-export const setFilter = (category:string) => useGameStore.getState().setFilter(category);
-export const useFilterGame = () => useGameStore((state)=> state.filterGame);
-export const useFilteredGames = () => useGameStore((state) => state.filteredGames);
+export const setCategory = (category:string) => useGameStore.getState().setCategory(category);
+export const useCategoryGame = () => useGameStore((state)=> state.categoryGame);
+export const useCategoryGames = () => useGameStore((state) => state.categoryGames);
 
 export const setSearchedGames = (title:string) => useGameStore.getState().setSearch(title);
 export const useSearchedTitle = () => useGameStore((state) => state.searchTitle);

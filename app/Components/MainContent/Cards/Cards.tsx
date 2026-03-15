@@ -5,13 +5,13 @@ import GameCard from './GameCard/GameCard';
 
 import {
     fetchGames,
-    useFilteredGames,
+    useCategoryGames,
     useLoading,
 } from '../../Stores/GameStore';
 
 export default function Cards() {
     const loading = useLoading();
-    const filteredGames = useFilteredGames();
+    const categoriedGames = useCategoryGames();
     useEffect(() => {
         fetchGames();
     }, []);
@@ -19,7 +19,7 @@ export default function Cards() {
     if (loading) return <LoadingCards />;
     return (
         <div className="grid w-full grid-cols-4 gap-5 pt-10">
-            {filteredGames.map((game) => (
+            {categoriedGames.map((game) => (
                 <GameCard game={game} key={game.id} />
             ))}
         </div>

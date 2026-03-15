@@ -6,14 +6,14 @@ interface IGame {
 }
 export default function GameCard({ game }: IGame) {
     return (
-        <div className="group flex h-80 w-75 flex-col rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+        <div className="group flex h-70 w-75 flex-col rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <div className="h-[60%] max-w-75 rounded-2xl">
                 <Image
                     src={game.cover_image_url}
                     alt={game.title}
                     width={500}
                     height={500}
-                    className="h-full w-full rounded-t-2xl object-cover"
+                    className="h-full w-full rounded-t-2xl object-contain"
                 />
             </div>
             <div className="p-5">

@@ -33,7 +33,7 @@ export default function SearchedGames() {
                                         alt={game.title}
                                         width={500}
                                         height={500}
-                                        className="h-full w-full rounded-lg object-cover"
+                                        className="h-full w-full rounded-lg object-contain"
                                     />
                                 </div>
                                 <h2>{game.title}</h2>
